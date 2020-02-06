@@ -15,10 +15,10 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('parent_id');
+            $table->bigInteger('parent_id')->nullable()->default(0);
             $table->bigInteger('author_id');
             $table->string('text');
-            $table->string('images');
+            $table->string('images')->nullable()->default(null);
             $table->timestamps();
         });
     }

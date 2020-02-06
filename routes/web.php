@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,8 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/pages/guest-book', function (){
-    return view('pages.msg-form');
-})->name('guest-book');
-
-Route::post('/pages/send-msg', 'GuestBookController@formHandler')->name('send-msg');
+// на вывод сообщений на странице
+Route::get('/pages/guest-book', 'GuestBookController@index')->name('guest-book')->middleware('auth');
+//на обработчик данных формы
+Route::post('/pages/send-msg', 'GuestBookController@formHandler')->name('send-msg')->middleware('auth');
